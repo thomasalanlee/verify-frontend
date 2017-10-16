@@ -1,6 +1,8 @@
 en:
   routes:
     start: start
+    begin_sign_in: begin-sign-in
+    begin_registration: begin-registration
     about: about
     sign_in: sign-in
     about_certified_companies: about-certified-companies

@@ -1,6 +1,8 @@
 cy:
   routes:
     start: dechrau
+    begin_sign_in: begin-sign-in-welsh
+    begin_registration: begin-registration-welsh
     about: am
     sign_in: mewngofnodi
     about_certified_companies: am-gwmniau-ardystiedig
