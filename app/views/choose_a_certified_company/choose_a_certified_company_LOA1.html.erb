@@ -7,13 +7,12 @@
 <div class="content-inner">
   <div class="grid-row">
     <div class="column-two-thirds">
-      <h1 class="heading-large"><%= t 'hub.choose_a_certified_company.heading' %></h1>
-      <p><%= t 'hub.choose_a_certified_company.existing_customer' %></p>
-      <p><%= t 'hub.choose_a_certified_company.personal_information' %></p>
+      <h1 class="heading-large"><%= t 'hub.choose_a_certified_company_ab_test.loa1_heading' %></h1>
+      <p><%= t 'hub.choose_a_certified_company_ab_test.loa1_content_html' %></p>
 
-      <ul class="list list-bullet">
-        <li><%= link_to(t('hub.choose_a_certified_company.why_companies'), why_companies_path) %></li>
-      </ul>
+      <p><%= link_to(t('hub.choose_a_certified_company_ab_test.why_companies'), why_companies_path) %></p>
+
+      <h2 class="heading-medium"><%= t 'hub.choose_a_certified_company_ab_test.loa1_heading_medium' %></h2>
 
       <div id="matching-idps">
         <% @recommended_idps.each do |identity_provider| %>
@@ -24,4 +23,3 @@
     </div>
   </div>
 </div>
-
