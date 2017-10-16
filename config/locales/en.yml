@@ -338,28 +338,9 @@ en:
         <p>There’s no effect on your credit score.</p>
       content_loa1_html: |
         <p>More certified companies means a more secure system - information is not stored in one place, but is split up in lots of different places, making it safer.</p>
-        <p>It’s your right to choose who you want to deal with from these companies. It’s also your right to change which company you deal with at any time.</p>
-        <p>When verifying your identity, these companies can use their own records, and they’re certified to access information like credit records. They do this to check information you provide.</p>
-        <p>Certified companies meet strict government privacy standards, so you can trust them with your information. They won’t use your information for any other purpose without your consent.</p>
-        <p>There’s no effect on your credit score.</p>
-    why_companies_ab_test:
-      title: Why there’s a choice of companies
-      choose_a_company: Choose a company
-      content_html: |
-        <p>More certified companies means a more secure system - information is not stored in one place, but is split up in lots of different places, making it safer.</p>
-        <p>It’s your right to choose who you want to deal with from these companies. It’s also your right to change which company you deal with at any time.</p>
-        <p>When verifying your identity, these companies can use their own records, and they’re certified to access information like credit records. They do this to check information you provide from passports and driving licences is correct.</p>
-        <p>Certified companies meet strict government privacy standards, so you can trust them with your information. They won’t use your information for any other purpose without your consent.</p>
-        <p>There’s no effect on your credit score.</p>
-      loa1_content_loa1_html: |
-        <p>More certified companies means a more secure system - information is not stored in one place, but is split up in lots of different places, making it safer.</p>
-        <p></p>
         <p>It’s your right to choose who you want to deal with from these companies, and you don’t need to be an existing customer with a company as they’ve built new, secure systems to verify identities. It’s also your right to change which company you deal with at any time.</p>
-        <p></p>
         <p>When verifying your identity, these companies can use their own records, and they’re certified to access information like credit records. They do this to check information you provide.</p>
-        <p></p>
         <p>Certified companies meet strict government privacy standards, so you can trust them with your information. They won’t use your information for any other purpose without your consent.</p>
-        <p></p>
         <p>There’s no effect on your credit score.</p>
     unlikely_to_verify:
       heading: GOV.UK Verify won’t work for you

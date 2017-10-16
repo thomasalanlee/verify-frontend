@@ -4,12 +4,16 @@ class StartController < ApplicationController
   def index
     @form = StartForm.new({})
 
-    # When tearing down the loa1_shortened_journey_v2, remove the unless condition
-    FEDERATION_REPORTER.report_start_page(current_transaction, request) unless is_loa1?
-
-    render :start
+    FEDERATION_REPORTER.report_start_page(current_transaction, request)
+    if is_loa1?
+      @tailored_text = current_transaction.tailored_text
+      render :start_loa1
+    else
+      render :start
+    end
   end
 
+  # below post only hit in loa2, should be separate controller
   def request_post
     @form = StartForm.new(params['start_form'] || {})
     if @form.valid?

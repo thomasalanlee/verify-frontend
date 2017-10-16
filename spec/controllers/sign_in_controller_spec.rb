@@ -11,15 +11,16 @@ describe SignInController do
     set_session_and_cookies_with_loa('LEVEL_1')
   end
 
-  context '#index' do
-    it 'will report to piwik when the user has selected the No option on the introduction page' do
-      stub_piwik_request('action_name' => 'The No option was selected on the introduction page')
-
-      get :index, params: { locale: 'en' }
-      expect(subject).to render_template(:index)
-      expect(a_request_to_piwik).to have_been_made
-    end
-  end
+  # context '#index' do
+  #   TODO: change this to use custom variable rather than yes/no for first time using Verify
+  #   it 'will report to piwik when the user has selected the No option on the introduction page' do
+  #     stub_piwik_request('action_name' => 'The No option was selected on the introduction page')
+  #
+  #     get :sign_in_loa1, params: { locale: 'en' }
+  #     expect(subject).to render_template(:sign_in_loa1)
+  #     expect(a_request_to_piwik).to have_been_made
+  #   end
+  # end
 
   context '#select_idp' do
     it 'will redirect to the path for the selected IDP' do

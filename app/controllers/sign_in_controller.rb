@@ -9,7 +9,7 @@ class SignInController < ApplicationController
     )
 
     FEDERATION_REPORTER.report_sign_in(current_transaction, request)
-    render 'index'
+    render is_loa1? ? :sign_in_loa1 : :sign_in_loa2
   end
 
   def select_idp
