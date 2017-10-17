@@ -1,8 +1,8 @@
-<%= page_title 'hub.start.title' %>
+<%= page_title 'hub.start_loa2.title' %>
 <% content_for :body_classes, 'hub-start' %>
 <% content_for :feedback_source, 'START_PAGE' %>
 
-<h1 class="heading-large"><%= t 'hub.start.heading' %></h1>
+<h1 class="heading-large"><%= t 'hub.start_loa2.heading' %></h1>
 
 <%= form_for @form, url: start_path, html: {id: 'start-page-form', class: 'js-validate', novalidate: 'novalidate'} do |f| %>
 
@@ -10,8 +10,8 @@
 
   <%= content_tag :div, class: form_question_class do %>
     <fieldset>
-      <%= f.custom_radio_button :selection, true, t('hub.start.answer_yes'), {required: true, data: { msg: t('hub.start.error_message')}, piwik_event_tracking: 'journey_user_type'} %>
-      <%= f.custom_radio_button :selection, false, t('hub.start.answer_no'), {required: true, data: { msg: t('hub.start.error_message')}, piwik_event_tracking: 'journey_user_type'} %>
+      <%= f.custom_radio_button :selection, true, t('hub.start_loa2.answer_yes'), {required: true, data: { msg: t('hub.start_loa2.error_message')}, piwik_event_tracking: 'journey_user_type'} %>
+      <%= f.custom_radio_button :selection, false, t('hub.start_loa2.answer_no'), {required: true, data: { msg: t('hub.start_loa2.error_message')}, piwik_event_tracking: 'journey_user_type'} %>
     </fieldset>
   <% end %>
 
@@ -19,7 +19,7 @@
 
   <div class="form-group-tight">
     <div class="actions">
-      <%= f.submit t('hub.start.continue'), class: 'button', id: 'next-button' %>
+      <%= f.submit t('hub.start_loa2.continue'), class: 'button', id: 'next-button' %>
     </div>
   </div>
 <% end %>

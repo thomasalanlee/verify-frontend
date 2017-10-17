@@ -58,8 +58,6 @@ cy:
     start_now: Dechreuwch nawr
     continue: Parhau
     back: Yn ôl
-    loa1_create_an_id_account: Create an identity account
-    loa1_get_set_up_with_gov_uk_verify: Get set up with GOV.UK Verify
   option:
     "no": "Na"
     unknown: Ddim yn gwybod
@@ -86,24 +84,19 @@ cy:
       title: Redirect to country
       heading: Mynd ymlaen i’r cam nesaf
       description: Oherwydd nad yw Javascript wedi’i alluogi ar eich porwr, mae’n rhaid i chi bwyso’r botwm parhau
-    start:
+    start_loa2:
       title: Dechrau
       heading: Mewngofnodi gyda GOV.UK Verify
       answer_yes: Dyma’r tro cyntaf i mi ddefnyddio Verify
       answer_no: Rwyf wedi defnyddio Verify o’r blaen
       continue: Parhau
       error_message: Dewiswch opsiwn
-    start_ab_test:
+    start_loa1:
       title: Dechrau
-      heading: Mewngofnodi gyda GOV.UK Verify
-      answer_yes: Dyma’r tro cyntaf i mi ddefnyddio Verify
-      answer_no: Rwyf wedi defnyddio Verify o’r blaen
-      continue: Parhau
-      error_message: Dewiswch opsiwn
-      loa1_verify_is_a_service: GOV.UK Verify is a secure service built to help fight the growing problem of online identity theft.
-      loa1_or: or
-      loa1_sign_in_with_existing: sign in with an existing identity account
-      loa1_sign_in: sign in
+      verify_is_a_service: GOV.UK Verify is a secure service built to help fight the growing problem of online identity theft.
+      or: or
+      sign_in_with_existing: sign in with an existing identity account
+      get_set_up_with_gov_uk_verify: Get set up with GOV.UK Verify
     signin:
       title: Mewngofnodi gyda chwmni ardystiedig
       heading: Gyda phwy mae gennych gyfrif hunaniaeth?
@@ -279,12 +272,21 @@ cy:
       explanation: Rydych angen cyfeiriad presennol yn y DU i gael eich hunaniaeth wedi’i ddilysu.
       verify_wont_work_but_there_is_still_a_way: Ni all 'GOV.UK Verify' cadarnhau pwy ydych chi oherwydd mai angen o leiaf un cyfeiriad yn y DU arnoch.  %{other_ways_text}
     choose_a_certified_company:
+      choose_idp: Dewiswch %{display_name}
+      about_idp: Am %{display_name}
+      dialog:
+        information_provided_by: Gwybodaeth a ddarparwyd gan %{display_name}
+        close: cau
+      about:
+        title: Am %{display_name}
+        information_provided_by: Gwybodaeth a ddarparwyd gan %{display_name}
+        close: cau
+    choose_a_certified_company_loa2:
       title: Dewiswch gwmni ardystiedig
       heading: Dewiswch gwmni ardystiedig i ddilysu eich hunaniaeth
       existing_customer: Nid oes angen i chi fod yn gwsmer presennol gyda chwmni.
       personal_information: Maent yn gofyn i chi ddarparu gwybodaeth bersonol a thystiolaeth, ac yna gwirio ei fod yn gywir gan ddefnyddio'r systemau newydd, diogel y maent wedi eu hadeiladu.
       why_companies: Pam fod dewis o gwmnïau
-      choose_idp: Dewiswch %{display_name}
       idp_count_html: "Yn seiliedig ar eich atebion, gall %{company_count} eich dilysu nawr:"
       company_html:
         zero: no&nbsp;cwmni
@@ -295,41 +297,12 @@ cy:
         other: "%{count}&nbsp;o gwmnïau"
       show_all_companies: Cwmniau sy’n annhebygol o’ch dilysu chi
       filtered_idps_message_html: Rydym wedi tynnu allan %{company_count}, oherwydd eu bod yn annhebygol o allu eich dilysu yn seiliedig ar eich atebion.
-      about_idp: Am %{display_name}
-      dialog:
-        information_provided_by: Gwybodaeth a ddarparwyd gan %{display_name}
-        close: cau
-      about:
-        title: Am %{display_name}
-        information_provided_by: Gwybodaeth a ddarparwyd gan %{display_name}
-        close: cau
-    choose_a_certified_company_ab_test:
+    choose_a_certified_company_loa1:
       title: Dewiswch gwmni ardystiedig
-      loa1_heading_medium: Choose a certified company to verify your identity
-      loa1_heading: How GOV.UK Verify works
-      existing_customer: Nid oes angen i chi fod yn gwsmer presennol gyda chwmni.
-      personal_information: Maent yn gofyn i chi ddarparu gwybodaeth bersonol a thystiolaeth, ac yna gwirio ei fod yn gywir gan ddefnyddio'r systemau newydd, diogel y maent wedi eu hadeiladu.
+      heading_medium: Choose a certified company to verify your identity
+      heading: How GOV.UK Verify works
       why_companies: Pam fod dewis o gwmnïau
-      choose_idp: Dewiswch %{display_name}
-      idp_count_html: "Yn seiliedig ar eich atebion, gall %{company_count} eich dilysu nawr:"
-      company_html:
-        zero: no&nbsp;cwmni
-        one: 1&nbsp;cwmni
-        two: 2&nbsp;gwmni
-        few: "%{count}&nbsp;o gwmnïau"
-        many: "%{count}&nbsp;o gwmnïau"
-        other: "%{count}&nbsp;o gwmnïau"
-      show_all_companies: Cwmniau sy’n annhebygol o’ch dilysu chi
-      filtered_idps_message_html: Rydym wedi tynnu allan %{company_count}, oherwydd eu bod yn annhebygol o allu eich dilysu yn seiliedig ar eich atebion.
-      about_idp: Am %{display_name}
-      dialog:
-        information_provided_by: Gwybodaeth a ddarparwyd gan %{display_name}
-        close: cau
-      about:
-        title: Am %{display_name}
-        information_provided_by: Gwybodaeth a ddarparwyd gan %{display_name}
-        close: cau
-      loa1_content_html: |
+      content_html: |
         <p>Companies certified for government check you are who you say you are.<p>
         <p></p>
         <p>The company you choose asks you for some personal details and checks them against records held by mobile phone providers, credit agencies, HM Passports Office or DVLA.<p>
