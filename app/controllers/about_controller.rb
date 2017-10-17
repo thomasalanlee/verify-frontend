@@ -3,10 +3,6 @@ class AboutController < ApplicationController
   include AbTestHelper
 
   def index
-    FEDERATION_REPORTER.report_registration(
-      current_transaction,
-      request
-    )
     @tailored_text = current_transaction.tailored_text
     render :about
   end
