@@ -8,10 +8,10 @@
 <%= @tailored_text.html_safe %>
 
 <div class="actions">
-  <%= button_link_to t('hub.start_loa1.get_set_up_with_gov_uk_verify'), begin_registration_path, id: 'next-button' %>
+  <%= button_link_to t('hub.start_loa1.get_set_up_with_gov_uk_verify'), begin_registration_path, id: 'begin-registration-link' %>
   <div>
     <%= t 'hub.start_loa1.or' %>
-    <%= link_to t('hub.start_loa1.sign_in_with_existing'), begin_sign_in_path %>
+    <%= link_to t('hub.start_loa1.sign_in_with_existing'), begin_sign_in_path, id: 'begin-sign-in-link'  %>
   </div>
 </div>
 
