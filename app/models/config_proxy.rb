@@ -5,6 +5,10 @@ class ConfigProxy
     @api_client = api_client
   end
 
+  def transaction(transaction_entity_id)
+    @api_client.get(transaction_endpoint(transaction_entity_id))
+  end
+
   def transactions
     @api_client.get(transactions_endpoint)
   end
