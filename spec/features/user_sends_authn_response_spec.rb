@@ -102,6 +102,25 @@ RSpec.describe 'User returns from an IDP with an AuthnResponse' do
                .with(query: hash_including('action_name' => 'Success - SIGN_IN_WITH_IDP at LOA LEVEL_2'))).to have_been_made.once
   end
 
+  it 'will redirect the user to /paused-registration on pending response' do
+    stub_session
+    page.set_rack_session(
+        selected_idp: { entity_id: 'http://idcorp.com', simple_id: 'stub-idp-one' }
+    )
+    stub_request(:get, INTERNAL_PIWIK.url).with(query: hash_including)
+    stub_request(:get, config_api_uri('config/transactions/http:%2F%2Fwww.test-rp.gov.uk%2FSAML2%2FMD/display-data'))
+        .to_return(body: '{ "serviceHomepage": "www.example-homepage.com" }', status: 200)
+    stub_api_request = stub_api_authn_response(session_id, 'result' => 'PENDING', 'isRegistration' => true)
+
+    visit("/test-saml?session-id=#{session_id}")
+    click_button 'saml-response-post'
+
+    expect(page).to have_current_path '/paused-registration'
+    expect(stub_api_request).to have_been_made.once
+    expect(a_request(:get, INTERNAL_PIWIK.url)
+               .with(query: hash_including('action_name' => 'Paused - REGISTER_WITH_IDP'))).to have_been_made.once
+  end
+
   it 'will redirect the user to /response-processing on successful sign in at the Country' do
     stub_session
     stub_matching_outcome

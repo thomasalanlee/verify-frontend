@@ -474,10 +474,16 @@ en:
         verify_using_other_documents: 'Verify using other documents'
         contact_verify: 'Contact GOV.UK Verify'
     paused_registration:
-      title: Paused registration
-      heading: "%{idp_name} has saved your information"
-      restart_instructions_html: "When you're ready to carry on verifying your identity, go back to <a href=\"%{rp_start_page}\">%{rp_name}</a>"
-      username_and_password_instructions: You'll need the username and password you created to sign in to %{rp_name}.
+      with_session:
+        title: Paused registration
+        heading: "%{idp_name} has saved your information"
+        restart_instructions_html: "When you're ready to carry on verifying your identity, go back to <a href=\"%{rp_start_page}\">%{rp_name}</a>"
+        username_and_password_instructions: You'll need the username and password you created to sign in to %{idp_name}.
+      without_session:
+        title: Paused registration
+        heading: Your certified company has saved your information
+        restart_instructions: "When you're ready to carry on verifying your identity, select your service from the list below"
+        username_and_password_instructions: You'll need the username and password you created to sign in.
   errors:
     transaction_list:
       title: Find the service you were using to start again
