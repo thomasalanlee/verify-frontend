@@ -2,7 +2,7 @@ module ConfigEndpoints
   PATH = '/config'.freeze
   PATH_PREFIX = Pathname(PATH)
   IDP_LIST_SUFFIX = 'idps/idp-list'.freeze
-  TRANSACTION_SUFFIX = 'transactions/%<entity_id>s/display-data'.freeze
+  TRANSACTION_SUFFIX = 'transactions/%s/display-data'.freeze
   TRANSACTIONS_SUFFIX = 'transactions/enabled'.freeze
 
   def idp_list_endpoint(transaction_id)
@@ -11,7 +11,7 @@ module ConfigEndpoints
   end
 
   def transaction_endpoint(transaction_entity_id)
-    PATH_PREFIX.join(TRANSACTION_SUFFIX % { entity_id: transaction_entity_id }.to_s)
+    PATH_PREFIX.join(format(TRANSACTION_SUFFIX, CGI.escape(transaction_entity_id))).to_s
   end
 
   def transactions_endpoint

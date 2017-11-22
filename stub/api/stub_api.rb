@@ -102,6 +102,14 @@ class StubApi < Sinatra::Base
     ''
   end
 
+  get '/config/transactions/*/display-data' do
+    '{
+        "simpleId":"test-rp",
+        "serviceHomepage":"http://example.com/test-rp",
+        "loaList":["LEVEL_2"]
+      }'
+  end
+
 private
 
   def post_to_api(relay_state)
