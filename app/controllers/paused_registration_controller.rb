@@ -18,7 +18,7 @@ class PausedRegistrationController < ApplicationController
     render :without_user_session
   end
 
-  private
+private
 
   def session_is_valid
     session_validator.validate(cookies, session).ok?

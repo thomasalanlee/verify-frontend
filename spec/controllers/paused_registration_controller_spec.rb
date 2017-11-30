@@ -13,7 +13,7 @@ describe PausedRegistrationController do
 
   it 'renders paused registration page' do
     stub_hub_request = stub_request(:get, 'http://api.com:50240/config/transactions/http:%2F%2Fwww.test-rp.gov.uk%2FSAML2%2FMD/display-data').
-        to_return(:status => 200, :body => '{"simpleId": "simpleId", "serviceHomepage":"www.example.com"}')
+        to_return(status: 200, body: '{"simpleId": "simpleId", "serviceHomepage":"www.example.com"}')
     expect(subject).to render_template(:with_user_session)
     expect(stub_hub_request).to have_been_made.once
   end
@@ -26,7 +26,7 @@ describe PausedRegistrationController do
 
   it 'should render paused registration without session page when there is no transaction homepage' do
     stub_hub_request = stub_request(:get, 'http://api.com:50240/config/transactions/http:%2F%2Fwww.test-rp.gov.uk%2FSAML2%2FMD/display-data').
-        to_return(:status => 200, :body => '{"simpleId": "simpleId"}')
+        to_return(status: 200, body: '{"simpleId": "simpleId"}')
     expect(subject).to render_template(:without_user_session)
     expect(stub_hub_request).to have_been_made.once
   end
@@ -35,7 +35,7 @@ describe PausedRegistrationController do
     session.delete(:selected_idp)
 
     stub_hub_request = stub_request(:get, 'http://api.com:50240/config/transactions/http:%2F%2Fwww.test-rp.gov.uk%2FSAML2%2FMD/display-data').
-        to_return(:status => 200, :body => '{"simpleId": "simpleId", "serviceHomepage":"www.example.com"}')
+        to_return(status: 200, body: '{"simpleId": "simpleId", "serviceHomepage":"www.example.com"}')
     expect(subject).to render_template(:without_user_session)
     expect(stub_hub_request).to have_been_made.once
   end

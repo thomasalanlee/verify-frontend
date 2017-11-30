@@ -105,7 +105,7 @@ RSpec.describe 'User returns from an IDP with an AuthnResponse' do
   it 'will redirect the user to /paused-registration on pending response' do
     stub_session
     page.set_rack_session(
-        selected_idp: { entity_id: 'http://idcorp.com', simple_id: 'stub-idp-one' }
+      selected_idp: { entity_id: 'http://idcorp.com', simple_id: 'stub-idp-one' }
     )
     stub_request(:get, INTERNAL_PIWIK.url).with(query: hash_including)
     stub_request(:get, config_api_uri('config/transactions/http:%2F%2Fwww.test-rp.gov.uk%2FSAML2%2FMD/display-data'))

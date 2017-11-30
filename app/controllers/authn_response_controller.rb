@@ -7,7 +7,7 @@ class AuthnResponseController < SamlController
   CANCEL = 'CANCEL'.freeze
   FAILED = 'FAILED'.freeze
   FAILED_UPLIFT = 'FAILED_UPLIFT'.freeze
-  PENDING= 'PENDING'.freeze
+  PENDING = 'PENDING'.freeze
   OTHER = 'OTHER'.freeze
 
   def idp_response
