@@ -481,9 +481,8 @@ en:
         username_and_password_instructions: You'll need the username and password you created to sign in to %{idp_name}.
       without_session:
         title: Registration Paused
-        heading: Your certified company has saved your information
-        restart_instructions: "When you're ready to carry on verifying your identity, select your service from the list below"
-        username_and_password_instructions: You'll need the username and password you created to sign in.
+        heading: The certified company has saved your information
+        restart_instructions: When you're ready to carry on verifying your identity, you need to go back to the government service and sign in to your certified company with the username and password you created.
   errors:
     transaction_list:
       title: Find the service you were using to start again
