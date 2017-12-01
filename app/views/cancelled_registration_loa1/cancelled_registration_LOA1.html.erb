@@ -12,5 +12,7 @@
       <li><%= link_to t('hub.cancelled_registration.options.verify_with_another_company'), choose_a_certified_company_path %></li>
       <li><%= link_to t('hub.cancelled_registration.options.contact_verify'), feedback_path('feedback-source': feedback_source) %></li>
     </ul>
+
+    <%= render partial: 'supported_verification/survey' %>
   </div>
 </div>

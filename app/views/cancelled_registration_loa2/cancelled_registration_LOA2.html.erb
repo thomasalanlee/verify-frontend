@@ -13,5 +13,7 @@
       <li><%= link_to t('hub.cancelled_registration.options.verify_using_other_documents'), select_documents_path %></li>
       <li><%= link_to t('hub.cancelled_registration.options.contact_verify'), feedback_path('feedback-source': feedback_source) %></li>
     </ul>
+
+    <%= render partial: 'supported_verification/survey' %>
   </div>
 </div>
