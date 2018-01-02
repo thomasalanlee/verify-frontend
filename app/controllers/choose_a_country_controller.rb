@@ -1,5 +1,7 @@
+require 'eidas_validation'
+
 class ChooseACountryController < ApplicationController
-  before_action :validate_session
+  include EidasValidation
   before_action :ensure_session_eidas_supported
 
   def choose_a_country

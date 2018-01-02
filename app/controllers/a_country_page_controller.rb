@@ -1,5 +1,7 @@
+require 'eidas_validation'
+
 class ACountryPageController < ApplicationController
-  before_action :validate_session
+  include EidasValidation
   before_action :ensure_session_eidas_supported
 
   def index; end

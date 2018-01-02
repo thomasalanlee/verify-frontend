@@ -1,4 +1,8 @@
+require 'idp_selection'
+
 class SignInController < ApplicationController
+  include IdpSelection
+
   def index
     @identity_providers = IDENTITY_PROVIDER_DISPLAY_DECORATOR.decorate_collection(current_identity_providers_for_sign_in)
 
