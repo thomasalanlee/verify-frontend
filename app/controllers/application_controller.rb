@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
   before_action :store_originating_ip
   before_action :set_piwik_custom_variables
   after_action :store_locale_in_cookie, if: -> { request.method == 'GET' }
+
   helper_method :transaction_taxon_list
   helper_method :transactions_list
   helper_method :loa1_transactions_list
@@ -28,6 +29,8 @@ class ApplicationController < ActionController::Base
   rescue_from Api::SessionTimeoutError, with: :session_timeout
 
   prepend RedirectWithSeeOther
+
+private
 
   def transaction_taxon_list
     TRANSACTION_TAXON_CORRELATOR.correlate(CONFIG_PROXY.transactions)
@@ -85,13 +88,6 @@ class ApplicationController < ActionController::Base
     cookies[CookieNames::PIWIK_USER_ID] = SecureRandom.hex(8) unless cookies.has_key? CookieNames::PIWIK_USER_ID
   end
 
-  def ensure_session_eidas_supported
-    txn_supports_eidas = session[:transaction_supports_eidas]
-    unless txn_supports_eidas
-      something_went_wrong('Transaction does not support Eidas', :forbidden)
-    end
-  end
-
   def set_secure_cookie(name, value)
     cookies[name] = {
       value: value,
@@ -110,14 +106,6 @@ class ApplicationController < ActionController::Base
 
   def set_journey_hint(idp_entity_id)
     cookies.encrypted[CookieNames::VERIFY_FRONT_JOURNEY_HINT] = { entity_id: idp_entity_id }.to_json
-  end
-
-private
-
-  def uri_with_query(path, query_string)
-    uri = URI(path)
-    uri.query = query_string
-    uri.to_s
   end
 
   def session_validator
@@ -151,14 +139,6 @@ private
 
   def report_to_analytics(action_name)
     FEDERATION_REPORTER.report_action(current_transaction, request, action_name)
-  end
-
-  def hide_available_languages
-    @hide_available_languages = true
-  end
-
-  def hide_feedback_link
-    @hide_feedback_link = true
   end
 
   def select_viewable_idp_for_sign_in(entity_id)
