@@ -18,4 +18,8 @@ module UserCookiesPartialController
         secure: Rails.configuration.x.cookies.secure
     }
   end
+
+  def set_journey_hint(idp_entity_id)
+    cookies.encrypted[CookieNames::VERIFY_FRONT_JOURNEY_HINT] = { entity_id: idp_entity_id }.to_json
+  end
 end

@@ -22,4 +22,13 @@ module UserSessionPartialController
   def current_transaction_homepage
     session[:transaction_homepage]
   end
+
+  def selected_identity_provider
+    selected_idp = session[:selected_idp]
+    if selected_idp.nil?
+      raise(Errors::WarningLevelError, 'No selected IDP in session')
+    else
+      IdentityProvider.from_session(selected_idp)
+    end
+  end
 end
