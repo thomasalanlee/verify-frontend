@@ -1,10 +1,12 @@
 require 'redirect_with_see_other'
 require 'cookies/cookies'
+require 'user_characteristics'
 require 'user_errors'
 
 class ApplicationController < ActionController::Base
   include DeviceType
   include UserErrors
+  include UserCharacteristics
 
   before_action :validate_session
   before_action :set_visitor_cookie
@@ -96,14 +98,6 @@ private
     }
   end
 
-  def selected_answer_store
-    @selected_answer_store ||= SelectedAnswerStore.new(session)
-  end
-
-  def selected_evidence
-    selected_answer_store.selected_evidence
-  end
-
   def set_journey_hint(idp_entity_id)
     cookies.encrypted[CookieNames::VERIFY_FRONT_JOURNEY_HINT] = { entity_id: idp_entity_id }.to_json
   end
@@ -166,49 +160,10 @@ private
     end
   end
 
-  def ajax_idp_redirection_sign_in_request
-    FEDERATION_REPORTER.report_sign_in_idp_selection(current_transaction, request, session[:selected_idp_name])
-
-    outbound_saml_message = SAML_PROXY_API.authn_request(session[:verify_session_id])
-    idp_request = idp_request_initilization(outbound_saml_message)
-    render json: idp_request
-  end
-
-  def ajax_idp_redirection_registration_request(recommended)
-    report_idp_registration_to_piwik(recommended)
-    outbound_saml_message = SAML_PROXY_API.authn_request(session[:verify_session_id])
-    idp_request = idp_request_initilization(outbound_saml_message)
-    render json: idp_request.to_json(methods: :hints)
-  end
-
-  def report_idp_registration_to_piwik(recommended)
-    FEDERATION_REPORTER.report_idp_registration(
-      current_transaction: current_transaction,
-      request: request,
-      idp_name: session[:selected_idp_name],
-      idp_name_history: session[:selected_idp_names],
-      evidence: selected_answer_store.selected_evidence,
-      recommended: recommended,
-      user_segments: session[:user_segments]
-    )
-  end
-
-  def idp_request_initilization(outbound_saml_message)
-    IdentityProviderRequest.new(
-      outbound_saml_message,
-      selected_identity_provider.simple_id,
-      selected_answer_store.selected_answers
-    )
-  end
-
   def set_piwik_custom_variables
     @piwik_custom_variables = [
         Analytics::CustomVariable.build_for_js_client(:rp, current_transaction.analytics_description),
         Analytics::CustomVariable.build_for_js_client(:loa_requested, session[:requested_loa])
     ]
-  end
-
-  def set_device_type_evidence
-    selected_answer_store.store_selected_answers('device_type', device_type)
   end
 end
