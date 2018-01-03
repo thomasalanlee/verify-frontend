@@ -1,4 +1,4 @@
-module IdpSelection
+module IdpSelectionPartialController
   def ajax_idp_redirection_sign_in_request
     FEDERATION_REPORTER.report_sign_in_idp_selection(current_transaction, request, session[:selected_idp_name])
 
@@ -28,9 +28,9 @@ module IdpSelection
 
   def idp_request_initilization(outbound_saml_message)
     IdentityProviderRequest.new(
-        outbound_saml_message,
-        selected_identity_provider.simple_id,
-        selected_answer_store.selected_answers
+      outbound_saml_message,
+      selected_identity_provider.simple_id,
+      selected_answer_store.selected_answers
     )
   end
 end

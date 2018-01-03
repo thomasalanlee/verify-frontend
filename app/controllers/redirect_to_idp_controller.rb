@@ -1,7 +1,7 @@
-require 'idp_selection'
+require 'partials/idp_selection_partial_controller'
 
 class RedirectToIdpController < ApplicationController
-  include IdpSelection
+  include IdpSelectionPartialController
 
   def register
     request_form

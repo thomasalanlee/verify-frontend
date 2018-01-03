@@ -1,12 +1,16 @@
 require 'redirect_with_see_other'
 require 'cookies/cookies'
-require 'user_characteristics'
-require 'user_errors'
+require 'partials/user_characteristics_partial_controller'
+require 'partials/user_errors_partial_controller'
+require 'partials/user_cookies_partial_controller'
+require 'partials/user_session_partial_controller'
 
 class ApplicationController < ActionController::Base
   include DeviceType
-  include UserErrors
-  include UserCharacteristics
+  include UserErrorsPartialController
+  include UserCharacteristicsPartialController
+  include UserCookiesPartialController
+  include UserSessionPartialController
 
   before_action :validate_session
   before_action :set_visitor_cookie
@@ -54,56 +58,12 @@ private
     @current_transaction ||= RP_DISPLAY_REPOSITORY.fetch(current_transaction_simple_id)
   end
 
-  def current_transaction_simple_id
-    session[:transaction_simple_id]
-  end
-
-  def current_transaction_entity_id
-    session[:transaction_entity_id]
-  end
-
-  def current_transaction_homepage
-    session[:transaction_homepage]
-  end
-
-  def store_locale_in_cookie
-    cookies.signed[CookieNames::VERIFY_LOCALE] = {
-      value: I18n.locale,
-      httponly: true,
-      secure: Rails.configuration.x.cookies.secure
-    }
-  end
-
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
   end
 
-  def validate_session
-    validation = session_validator.validate(cookies, session)
-    unless validation.ok?
-      logger.info(validation.message)
-      render_error(validation.type, validation.status)
-    end
-  end
-
-  def set_visitor_cookie
-    cookies[CookieNames::PIWIK_USER_ID] = SecureRandom.hex(8) unless cookies.has_key? CookieNames::PIWIK_USER_ID
-  end
-
-  def set_secure_cookie(name, value)
-    cookies[name] = {
-      value: value,
-      httponly: true,
-      secure: Rails.configuration.x.cookies.secure
-    }
-  end
-
   def set_journey_hint(idp_entity_id)
     cookies.encrypted[CookieNames::VERIFY_FRONT_JOURNEY_HINT] = { entity_id: idp_entity_id }.to_json
-  end
-
-  def session_validator
-    SESSION_VALIDATOR
   end
 
   def public_piwik
@@ -123,44 +83,11 @@ private
     end
   end
 
-  def current_identity_providers_for_loa
-    CONFIG_PROXY.get_idp_list_for_loa(session[:transaction_entity_id], session[:requested_loa]).idps
-  end
-
-  def current_identity_providers_for_sign_in
-    CONFIG_PROXY.get_idp_list_for_sign_in(session[:transaction_entity_id]).idps
-  end
-
-  def report_to_analytics(action_name)
+  def report_to_analytics(action_name) # no app controller, controllers
     FEDERATION_REPORTER.report_action(current_transaction, request, action_name)
   end
 
-  def select_viewable_idp_for_sign_in(entity_id)
-    for_viewable_idp(entity_id, current_identity_providers_for_sign_in) do |decorated_idp|
-      session[:selected_idp] = decorated_idp.identity_provider
-      yield decorated_idp
-    end
-  end
-
-  def select_viewable_idp_for_loa(entity_id)
-    for_viewable_idp(entity_id, current_identity_providers_for_loa) do |decorated_idp|
-      session[:selected_idp] = decorated_idp.identity_provider
-      yield decorated_idp
-    end
-  end
-
-  def for_viewable_idp(entity_id, identity_provider_list)
-    matching_idp = identity_provider_list.detect { |idp| idp.entity_id == entity_id }
-    idp = IDENTITY_PROVIDER_DISPLAY_DECORATOR.decorate(matching_idp)
-    if idp.viewable?
-      yield idp
-    else
-      logger.error 'Unrecognised IdP simple id'
-      render_not_found
-    end
-  end
-
-  def set_piwik_custom_variables
+  def set_piwik_custom_variables # yes
     @piwik_custom_variables = [
         Analytics::CustomVariable.build_for_js_client(:rp, current_transaction.analytics_description),
         Analytics::CustomVariable.build_for_js_client(:loa_requested, session[:requested_loa])

@@ -1,4 +1,4 @@
-module UserCharacteristics
+module UserCharacteristicsPartialController
   def selected_answer_store
     @selected_answer_store ||= SelectedAnswerStore.new(session)
   end

@@ -1,6 +1,8 @@
 require 'ab_test/ab_test'
+require 'partials/user_cookies_partial_controller'
 
 class AuthnRequestController < SamlController
+  include UserCookiesPartialController
   protect_from_forgery except: :rp_request
   skip_before_action :validate_session
   skip_before_action :set_piwik_custom_variables
