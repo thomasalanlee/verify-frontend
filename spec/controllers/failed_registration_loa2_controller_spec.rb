@@ -6,6 +6,8 @@ require 'api_test_helper'
 describe FailedRegistrationLoa2Controller do
   WITH_CONTINUE_ON_FAILED_REGISTRATION_RP = 'test-rp-with-continue-on-fail'.freeze
   WITH_NON_CONTINUE_ON_FAILED_REGISTRATION_RP = 'test-rp'.freeze
+  WITH_CUSTOM_FAILED_REGISTRATION_RP = 'test-rp-noc3'.freeze
+
 
   before(:each) do
     session[:selected_idp] = { 'entity_id' => 'http://idcorp.com', 'simple_id' => 'stub-idp-one', 'levels_of_assurance' => %w(LEVEL_1 LEVEL_2) }
@@ -29,6 +31,12 @@ describe FailedRegistrationLoa2Controller do
       set_rp_to(WITH_CONTINUE_ON_FAILED_REGISTRATION_RP)
 
       expect(subject).to render_template(:index_continue_on_failed_registration_LOA2)
+    end
+
+    it 'UC failed registration view when rp is' do
+      set_rp_to(WITH_CUSTOM_FAILED_REGISTRATION_RP)
+
+      expect(subject).to render_template(:partial => '_custom_failed_registration')
     end
   end
 
