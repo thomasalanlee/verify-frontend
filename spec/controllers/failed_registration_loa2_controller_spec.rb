@@ -33,10 +33,10 @@ describe FailedRegistrationLoa2Controller do
       expect(subject).to render_template(:index_continue_on_failed_registration_LOA2)
     end
 
-    it 'UC failed registration view when rp is' do
+    it 'custom failed registration when rp is test-rp-noc3' do
       set_rp_to(WITH_CUSTOM_FAILED_REGISTRATION_RP)
 
-      expect(subject).to render_template(:partial => '_custom_failed_registration')
+      expect(@custom_fail).to eql(true)
     end
   end
 

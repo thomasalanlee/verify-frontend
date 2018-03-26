@@ -3,10 +3,10 @@
 
 <div class="grid-row">
   <div class="column-two-thirds">
-    <% if CUSTOM_FAIL_PAGE_RPS.include?(current_transaction_simple_id) %>
+    <% if @custom_fail %>
         <%= render partial: 'failed_registration/custom_failed_registration', locals: {idp: @idp, transaction: @transaction, start_again_path: select_documents_path} %>
     <% else %>
-      <%= render partial: 'failed_registration/non_continue_rp', locals: {idp: @idp, transaction: @transaction, start_again_path: select_documents_path} %>
+        <%= render partial: 'failed_registration/non_continue_rp', locals: {idp: @idp, transaction: @transaction, start_again_path: select_documents_path} %>
     <% end %>
   </div>
 </div>
