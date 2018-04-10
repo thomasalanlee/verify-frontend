@@ -9,5 +9,9 @@ module Display
     content :tailored_text
     content :custom_heading, default: nil
     content :custom_what_next_content, default: nil
+    content :custom_other_options, default: nil
+    content :custom_try_another_summary, default: nil
+    content :custom_try_another_text, default: nil
+    content :custom_contact_details_intro, default: nil
   end
 end

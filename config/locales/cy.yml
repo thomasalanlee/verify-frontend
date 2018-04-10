@@ -366,7 +366,6 @@ cy:
       extra_security: Gwasanaethau'r llywodraeth sydd angen tystiolaeth ychwanegol
     custom_failed_registration:
       title: Unable to verify your identity
-      custom_what_next: "%{idp_name}"
     failed_registration:
       title: Methu dilysu eich hunaniaeth
       heading: Roedd %{idp_name} yn methu dilysu eich hunaniaeth

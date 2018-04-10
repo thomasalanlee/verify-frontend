@@ -1,9 +1,31 @@
 ---
+cy:
+  rps:
+    test-rp-no-demo:
+      name: register for an identity profile
+      rp_name: Test RP No Demo
+      custom_heading: This is a custom fail page in welsh.
+      custom_other_options: Custom text to be provided by RP.
+      custom_what_next_content: This is custom what next content.
+      custom_try_another_summary: This is custom try another summary.
+      custom_try_another_text: This is custom try another text.
+      custom_contact_details_intro: This is custom contact details.
+      analytics_description: TEST RP NO DEMO
+      other_ways_description: access TestRP No Demo
+      other_ways_text:  |
+                                   <p> Specific text to be provided by the RP. </p>
+      tailored_text: <p>This is tailored text for TEST RP NO DEMO</p>
 en:
   rps:
     test-rp-no-demo:
       name: register for an identity profile
       rp_name: Test RP No Demo
+      custom_heading: This is a custom fail page.
+      custom_other_options: Custom text to be provided by RP.
+      custom_what_next_content: This is custom what next content.
+      custom_try_another_summary: This is custom try another summary.
+      custom_try_another_text: This is custom try another text.
+      custom_contact_details_intro: This is custom contact details.
       analytics_description: TEST RP NO DEMO
       other_ways_description: access TestRP No Demo
       other_ways_text:  |

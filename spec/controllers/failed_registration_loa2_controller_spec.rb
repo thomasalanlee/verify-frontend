@@ -6,7 +6,7 @@ require 'api_test_helper'
 describe FailedRegistrationLoa2Controller do
   WITH_CONTINUE_ON_FAILED_REGISTRATION_RP = 'test-rp-with-continue-on-fail'.freeze
   WITH_NON_CONTINUE_ON_FAILED_REGISTRATION_RP = 'test-rp'.freeze
-  WITH_CUSTOM_FAILED_REGISTRATION_RP = 'test-rp-noc3'.freeze
+  WITH_CUSTOM_FAILED_REGISTRATION_RP = 'test-rp-no-demo'.freeze
 
 
   before(:each) do
@@ -31,12 +31,6 @@ describe FailedRegistrationLoa2Controller do
       set_rp_to(WITH_CONTINUE_ON_FAILED_REGISTRATION_RP)
 
       expect(subject).to render_template(:index_continue_on_failed_registration_LOA2)
-    end
-
-    it 'custom failed registration when rp is test-rp-noc3' do
-      set_rp_to(WITH_CUSTOM_FAILED_REGISTRATION_RP)
-
-      expect(@custom_fail).to eql(true)
     end
   end
 
