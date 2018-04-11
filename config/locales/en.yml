@@ -359,9 +359,6 @@ en:
       heading: "%{display_name} has verified your identity"
       add_security_loa1: When you access some government services, you'll be asked to provide more evidence, but you only need to do this once.
       extra_security: Government services requiring extra evidence
-    custom_failed_registration:
-      custom_heading: This is a custom fail page.
-      custom_other_options: Specific custom text to be provided by RP.
     failed_registration:
       title: Unable to verify your identity
       heading: "%{idp_name} was unable to verify your identity"
